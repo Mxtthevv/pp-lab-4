@@ -4,12 +4,14 @@ import employees.Worker;
 public class Company {
     public static void main(String[] args) {
 
-        Employee[] employees = new Employee[5];
+        Employee[] employees = new Employee[7];
         employees[0] = new Manager("Franek Kowalski", 1000);
         employees[1] = new Worker("Mateusz Kowalski", 2000);
         employees[2] = new Employee("Bartek Kowalski", 3000);
         employees[3] = new Employee("Ewa Kowalska", 4000);
         employees[4] = new Worker("Paweł Kowalski", 5000);
+        employees[5] = new Manager("Sebastian Kowalski", 6000);
+        employees[6] = new Worker("Natalia Kowalska", 7000);
 
         ((Worker) employees[1]).setPosition("Technik 1");
 
@@ -26,9 +28,21 @@ public class Company {
 
         employees[0].setSalary(7500);
 
-        System.out.println("Dane dla wszystkich pracowników:");
         for (Employee employee : employees) {
-            System.out.println(employee);
+            double newSalary = employee.getSalary() + 500;
+            employee.setSalary(newSalary);
+        }
+
+        for (Employee employee : employees) {
+            if (employee instanceof Manager) {
+                ((Manager) employee).setNumberOfSubordinates(3);
+                employee.setSalary(7500);
+            }
+        }
+
+        System.out.println("Zaktualizowane informacje o pracownikach:");
+        for (Employee employee : employees) {
+            System.out.println(employee.toString());
         }
     }
 }
