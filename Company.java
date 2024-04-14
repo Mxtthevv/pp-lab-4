@@ -11,11 +11,20 @@ public class Company {
         employees[3] = new Employee("Ewa Kowalska", 4000);
         employees[4] = new Worker("Paweł Kowalski", 5000);
 
-        ((Manager) employees[0]).setNumberOfSubordinates(0);
-
         ((Worker) employees[1]).setPosition("Technik 1");
 
         ((Worker) employees[4]).setPosition("Technik 2");
+
+        int nonManagerCount = 0;
+        for (Employee employee : employees) {
+            if (!(employee instanceof Manager)) {
+                nonManagerCount++;
+            }
+        }
+
+        ((Manager) employees[0]).setNumberOfSubordinates(nonManagerCount);
+
+        employees[0].setSalary(7500);
 
         System.out.println("Dane dla wszystkich pracowników:");
         for (Employee employee : employees) {
